@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TablaUsuariosComponent } from './components/tabla-usuarios/tabla-usuarios.component';
 import { AltaAdminComponent } from './components/alta-admin/alta-admin.component';
+import { NavComponent } from './components/nav/nav.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AltaAdminComponent } from './components/alta-admin/alta-admin.component
     PrincipalComponent,
     UsuariosComponent,
     TablaUsuariosComponent,
-    AltaAdminComponent
+    AltaAdminComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

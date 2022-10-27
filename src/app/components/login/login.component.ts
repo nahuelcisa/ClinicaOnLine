@@ -38,12 +38,14 @@ export class LoginComponent implements OnInit {
                   if(this.as.user.perfil == 'profesional'){
                     if(this.as.user.habilitado){
                       this.toastr.success('disfrute del sistema!', 'Bienvenido!');
+                      this.router.navigateByUrl('/principal');
                     }else{
                         //Usuario No habilitado por un Administrador
                         this.toastr.error('Espere la habilitacion del administrador!', 'profesional NO HABILITADO!');
                     }
                   }else{
                     this.toastr.success('disfrute del sistema!', 'Bienvenido!');
+                    this.router.navigateByUrl('/principal');
                   }
                 }else{
                   this.toastr.error('Verifique su casilla de correo!', 'Correo NO CONFIRMADO!');
@@ -51,6 +53,36 @@ export class LoginComponent implements OnInit {
       });
     }else{
       this.toastr.error('Verifique si los datos son correctos!', 'ERROR EN LOS DATOS!');
+    }
+  }
+
+
+  inicioRapido(a : any){
+    switch(a){
+      case 1:
+        this.grupoControles.get('email')?.setValue('nahuelcisa17@gmail.com');
+        this.grupoControles.get('clave')?.setValue('123456789');
+        break;
+      case 2:
+        this.grupoControles.get('email')?.setValue('nahuelcisa17@gmail.com');
+        this.grupoControles.get('clave')?.setValue('123456789');
+        break;
+      case 3:
+        this.grupoControles.get('email')?.setValue('nahuelcisa17@gmail.com');
+        this.grupoControles.get('clave')?.setValue('123456789');
+        break;
+      case 4:
+        this.grupoControles.get('email')?.setValue('lehiy44418@3mkz.com');
+        this.grupoControles.get('clave')?.setValue('123456789');
+        break;
+      case 5:
+        this.grupoControles.get('email')?.setValue('nahuelcisa17@gmail.com');
+        this.grupoControles.get('clave')?.setValue('123456789');
+        break;
+      case 6:
+        this.grupoControles.get('email')?.setValue('jeyesis426@adroh.com');
+        this.grupoControles.get('clave')?.setValue('123456789');
+        break;
     }
   }
 

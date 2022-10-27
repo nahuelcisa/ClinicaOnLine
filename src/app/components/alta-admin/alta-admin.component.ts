@@ -37,7 +37,7 @@ export class AltaAdminComponent implements OnInit {
       perfil : 'administrador'
     }
 
-    this.fs.agregarProfesional(admin);
+    this.fs.agregarAdmin(admin);
     this.toastr.success('Confirme mail y el administrador deberá habilitarlo ahora!', 'Profesional registrado!');
     this.grupoControles.reset();
   }
