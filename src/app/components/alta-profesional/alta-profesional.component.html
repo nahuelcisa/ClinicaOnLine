@@ -1,0 +1,44 @@
+<div class="wrapper">
+	<div class="logo">
+		<img src="../../../assets/doctor.png" alt="">
+	</div>
+	<div class="text-center mt-4 name">
+		Registro Profesional
+	</div>
+	<form class="p-3 mt-3" [formGroup]="grupoControles" (ngSubmit)="agregarProfesional()">
+		<div class="form-field d-flex align-items-center">
+			<input type="text" name="nombre" formControlName="nombre" placeholder="Nombre">
+			<small class="invalid" *ngIf="this.grupoControles.get('nombre')?.errors?.['required'] && this.grupoControles.get('nombre')?.touched">El nombre es requerido
+			</small>
+		</div>
+		<div class="form-field d-flex align-items-center">
+			<input type="text" name="apellido" formControlName="apellido" placeholder="Apellido">
+			<small class="invalid" *ngIf="this.grupoControles.get('apellido')?.errors?.['required'] && this.grupoControles.get('apellido')?.touched">El apellido es requeridos</small>
+		</div>
+		<div class="form-field d-flex align-items-center">
+			<input type="number" name="edad" formControlName="edad" placeholder="Edad">
+			<small class="invalid" *ngIf="this.grupoControles.get('edad')?.errors?.['required'] && this.grupoControles.get('edad')?.touched">La edad es requerida</small>
+		</div>
+		<div class="form-field d-flex align-items-center">
+			<input type="number" name="dni" formControlName="dni" placeholder="DNI">
+			<small class="invalid" *ngIf="this.grupoControles.get('dni')?.errors?.['required'] && this.grupoControles.get('dni')?.touched">El dni es requerido</small>
+		</div>
+		<div class="form-field d-flex align-items-center">
+			<input type="text" name="esp" formControlName="esp" placeholder="Especialidad">
+			<small class="invalid" *ngIf="this.grupoControles.get('esp')?.errors?.['required'] && this.grupoControles.get('esp')?.touched">La especialidad es requerida
+			</small>
+		</div>
+		<div class="form-field d-flex align-items-center">
+			<input type="text" name="mail" formControlName="mail" placeholder="Mail">
+			<small class="invalid" *ngIf="this.grupoControles.get('mail')?.errors?.['required'] && this.grupoControles.get('mail')?.touched">El mail es requerido</small>
+		</div>
+		<div class="form-field d-flex align-items-center">
+			<input type="password" name="clave" formControlName="clave" placeholder="Password">
+			<small class="invalid" *ngIf="this.grupoControles.get('clave')?.errors?.['required'] && this.grupoControles.get('clave')?.touched">La clave es requerida</small>
+		</div>
+		<div class="form-field d-flex align-items-center">
+			<input type="file" name="foro" formControlName="foto" placeholder="Foto" (change)="upload($event)">
+		</div>
+		<button class="btn mt-3" type="submit" [disabled]='grupoControles.invalid' >Registrar</button>
+	</form>
+</div>

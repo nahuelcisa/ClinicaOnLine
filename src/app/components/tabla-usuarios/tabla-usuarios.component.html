@@ -1,0 +1,29 @@
+<section class="pb_section pb_section_v1" data-section="about" id="section-about">
+    <div class="container">
+      <div class="row justify-content-center mt-5">    
+            <div class="rounded p-1 text-center fs-5" style="color: white; background-color: rgb(53, 51, 51);">
+                <table style="width:100%">
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>DNI</th>
+                      <th>Especialidad</th>
+                      <th>Correo</th>
+                      <th>Habilitar</th>
+                    </tr>
+                    <tr *ngFor="let item of this.usuarios">
+                      <td>{{item.nombre}}</td>
+                      <td>{{item.apellido}}</td>
+                      <td>{{item.dni}}</td>
+                      <td>{{item.especialidad}}</td>
+                      <td>{{item.mail}}</td>
+                      <td>
+                        <button type="button" class="btn btn-success" *ngIf="item.habilitado" (click)="habilitarProfesional(item,true)">Habilitar</button>
+                        <button type="button" class="btn btn-danger" *ngIf="!item.habilitado" (click)="habilitarProfesional(item,false)">Inhabilitar</button>
+                    </td>
+                    </tr>
+                  </table>
+            </div>
+        </div>
+    </div>  
+  </section>

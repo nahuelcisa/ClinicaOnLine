@@ -1,0 +1,52 @@
+<div class="wrapper">
+	<div class="logo">
+		<img src="../../../assets/3140366.png" alt="">
+	</div>
+	<div class="text-center mt-4 name">
+		Clinica OnLine
+	</div>
+	<form class="p-3 mt-3" [formGroup]="grupoControles" (ngSubmit)="iniciarSesion()">
+		<div class="form-field d-flex align-items-center">
+			<input type="text" name="userName" placeholder="Correo" formControlName="email">
+			<small class="invalid" *ngIf="this.grupoControles.get('email')?.errors?.['required'] && this.grupoControles.get('email')?.touched">El correo es requerido
+			</small>
+		</div>
+		<div class="form-field d-flex align-items-center">
+			<input type="password" name="password" placeholder="Clave" formControlName="clave">
+			<small class="invalid" *ngIf="this.grupoControles.get('clave')?.errors?.['required'] && this.grupoControles.get('clave')?.touched">La clave es requerida
+			</small>
+		</div>
+		<button class="btn mt-3" [disabled]='grupoControles.invalid' >Ingresar</button>
+	</form>
+	<div class="text-center fs-6">
+		<a [routerLink]="['/registro']">Registarse</a>
+	</div>
+	<div style="border: 3px solid rgb(153, 145, 145); margin-top:20px;">
+		<div class="text-center fs-6" style="margin-top: 10px;">
+			<h2 style="text-decoration:underline;">Inicio Rapido</h2>
+		</div>
+		
+		<div class="text-center fs-6 " style="margin-top: 20px;">
+			<div class="row align-items-start">
+				<div class="col logo" style="margin-bottom: 20px;">
+					<img src="../../../assets/paciente.png"  style="height: 80px; width: 80px;" class="card-img-top" alt="...">
+				</div>
+				<div class="col logo" style="margin-bottom: 20px;">
+					<img src="../../../assets/paciente.png"  style="height: 80px; width: 80px;" class="card-img-top" alt="...">
+				</div>
+				<div class="col logo" style="margin-bottom: 20px;">
+					<img src="../../../assets/paciente.png"  style="height: 80px; width: 80px;" class="card-img-top" alt="...">
+				</div>
+				<div class="col logo" style="margin-bottom: 20px;">
+					<img src="../../../assets/doctor.png"  style="height: 80px; width: 80px;" class="card-img-top" alt="...">
+				</div>
+				<div class="col logo" style="margin-bottom: 20px;">
+					<img src="../../../assets/doctor.png"  style="height: 80px; width: 80px;" class="card-img-top" alt="...">
+				</div>
+				<div class="col logo" style="margin-bottom: 20px;">
+					<img src="../../../assets/admin.png"  style="height: 80px; width: 80px;" class="card-img-top" alt="...">
+				</div>
+			  </div>
+		</div>
+	</div>
+</div>

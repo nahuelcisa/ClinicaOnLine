@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "clinicaonline-1e39f": {
+      "hosting": {
+        "TpClinicaOnLine": [
+          "clinicaonline-1e39f"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "clinicaonline-1e39f"
+  }
+}
