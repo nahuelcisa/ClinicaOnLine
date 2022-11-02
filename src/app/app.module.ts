@@ -22,6 +22,11 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TablaUsuariosComponent } from './components/tabla-usuarios/tabla-usuarios.component';
 import { AltaAdminComponent } from './components/alta-admin/alta-admin.component';
 import { NavComponent } from './components/nav/nav.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component';
+import { EspecialistasPipe } from './pipes/especialistas.pipe';
+import { HorasTurnosPipe } from './pipes/horas-turnos.pipe';
+import { MisTurnosComponent } from './components/mis-turnos/mis-turnos.component';
 
 
 @NgModule({
@@ -34,7 +39,12 @@ import { NavComponent } from './components/nav/nav.component';
     UsuariosComponent,
     TablaUsuariosComponent,
     AltaAdminComponent,
-    NavComponent
+    NavComponent,
+    PerfilComponent,
+    SolicitarTurnoComponent,
+    EspecialistasPipe,
+    HorasTurnosPipe,
+    MisTurnosComponent
   ],
   imports: [
     BrowserModule,

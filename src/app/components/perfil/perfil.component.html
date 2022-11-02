@@ -1,0 +1,61 @@
+<app-nav></app-nav>
+<section class="vh-95" style="margin-top: 200px;">
+    <div class="container py-5 h-95">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-6 mb-4 mb-lg-0">
+          <div class="card mb-3" style="border-radius: .5rem;">
+            <div class="row g-0">
+              <div class="col-md-4 gradient-custom text-center text-white"
+                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                <img src="{{this.as.user.foto}}"
+                  alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                <h1>{{this.as.user.nombre}}</h1>
+                <h2>{{this.as.user.apellido}}</h2>
+                <i class="far fa-edit mb-5"></i>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body p-4">
+                  <h2>Mi perfil</h2>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-8 mb-3">
+                      <h6>Email</h6>
+                      <p class="text-muted">{{this.as.user.mail}}</p>
+                    </div>
+                    <div class="col-4 mb-3">
+                      <h6>Dni</h6>
+                      <p class="text-muted">{{this.as.user.dni}}</p>
+                    </div>
+                  </div>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-4 mb-3" *ngIf="this.as.user.obraSocial">
+                      <h6>Obra Social</h6>
+                      <p class="text-muted">{{this.as.user.obraSocial}}</p>
+                    </div>
+                    <div class="col-4 mb-3" *ngIf="this.as.user.especialidad">
+                      <h6>Especialidad</h6>
+                      <p class="text-muted">{{this.as.user.especialidad}}</p>
+                    </div>
+                    <div class="col-4 mb-3">
+                      <h6>Edad</h6>
+                      <p class="text-muted">{{this.as.user.edad}}</p>
+                    </div>
+                    <div class="col-4 mb-3">
+                      <h6>Perfil</h6>
+                      <p class="text-muted">{{this.as.user.perfil}}</p>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-start">
+                    <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                    <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                    <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

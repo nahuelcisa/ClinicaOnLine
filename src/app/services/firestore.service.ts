@@ -15,6 +15,7 @@ export class FirestoreService {
   usuariosCollectionReference : any;
   pacientesCollectionReference : any;
   adminCollectionReference : any;
+  turnoCollectionReference : any;
 
   constructor(public Firestore: Firestore, public as : AuthService) {
     this.storage = getStorage();
@@ -22,6 +23,7 @@ export class FirestoreService {
     this.pacientesCollectionReference = collection(this.Firestore, 'pacientes');
     this.usuariosCollectionReference = collection(this.Firestore, 'usuarios');
     this.adminCollectionReference = collection(this.Firestore, 'administradores');
+    this.turnoCollectionReference = collection(this.Firestore, 'turnos');
     
   }
 
@@ -70,8 +72,19 @@ export class FirestoreService {
     });
   }
 
+  agregarTurno(turno : any){
+    return addDoc(this.turnoCollectionReference,turno);
+  }
+
   ListaUsuarios():Observable<any[]>{
     return collectionData(this.usuariosCollectionReference,{idField: 'id'}) as Observable<any[]>;
+  }
+  ListaTurnos():Observable<any[]>{
+    return collectionData(this.turnoCollectionReference,{idField: 'id'}) as Observable<any[]>;
+  }
+
+  ListaEspecialistas():Observable<any[]>{
+    return collectionData(this.profesionalCollectionReference,{idField: 'id'}) as Observable<any[]>;
   }
 
   ModificarUsuario(usuario:any,id:any){

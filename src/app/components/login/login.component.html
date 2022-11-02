@@ -16,6 +16,10 @@
 			<small class="invalid" *ngIf="this.grupoControles.get('clave')?.errors?.['required'] && this.grupoControles.get('clave')?.touched">La clave es requerida
 			</small>
 		</div>
+		<div class="d-flex justify-content-center" *ngIf="cargando">
+			<div class="spinner-border" role="status">
+		</div>
+		</div>
 		<button class="btn mt-3" [disabled]='grupoControles.invalid' >Ingresar</button>
 	</form>
 	<div class="text-center fs-6">
@@ -56,3 +60,4 @@
 		</div>
 	</div>
 </div>
+

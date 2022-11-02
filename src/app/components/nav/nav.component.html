@@ -5,6 +5,9 @@
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/principal']">Inicio</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/perfil']">Perfil</a>
+          </li>
           <li class="nav-item" *ngIf="this.as.user.perfil == 'administrador'">
             <a class="nav-link" [routerLink]="['/usuarios']">Usuarios</a>
           </li>
