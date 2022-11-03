@@ -34,6 +34,5 @@ Una vez iniciada la sesion, para solicitar un turno debemos realizar lo siguient
 
 Una vez solicitado el turno, podremos visualizarlo en la seccion "mis turnos" como se muestra a continuacion.
 
-<pre>
-     <img src="./src/assets/capturas/misTurnos.png" alt="drawing"/>
-</pre>
+
+<img src="./src/assets/capturas/misTurnos.png" alt="drawing"/>
