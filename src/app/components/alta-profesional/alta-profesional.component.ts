@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { CaptchaService } from 'src/app/services/captcha.service';
 
 @Component({
   selector: 'app-alta-profesional',
@@ -13,7 +14,9 @@ export class AltaProfesionalComponent implements OnInit {
 
   public grupoControles !: FormGroup;
   private foto : any;
-  constructor(private fb : FormBuilder, public fs : FirestoreService, private toastr: ToastrService, private router : Router) { 
+  public captcha : any;
+
+  constructor(private fb : FormBuilder, public fs : FirestoreService, private toastr: ToastrService, private router : Router, public cs : CaptchaService) { 
     this.grupoControles = this.fb.group({
       'nombre': ['',[Validators.required]],
       'apellido' : ['',[Validators.required]],
@@ -22,6 +25,7 @@ export class AltaProfesionalComponent implements OnInit {
       'dni' : ['',[Validators.required]],
       'mail' : ['',[Validators.required]],
       'clave' : ['',[Validators.required]],
+      'captcha': ['',[Validators.required]],
       'foto' : [],
     });
   }
@@ -39,13 +43,16 @@ export class AltaProfesionalComponent implements OnInit {
       perfil : 'profesional',
       habilitado : false
     }
-
-    this.fs.agregarProfesional(profesional);
-    this.toastr.success('Confirme mail y el administrador deberá habilitarlo ahora!', 'Profesional registrado!');
-    this.grupoControles.reset();
-    setTimeout(() => {
-      this.router.navigateByUrl('/login');
-    }, 3000);
+    if(this.captcha == this.cs.palabra){
+      this.fs.agregarProfesional(profesional);
+      this.toastr.success('Confirme mail y el administrador deberá habilitarlo ahora!', 'Profesional registrado!');
+      this.grupoControles.reset();
+      setTimeout(() => {
+        this.router.navigateByUrl('/login');
+      }, 3000);
+    }else{
+      this.toastr.error('Verifique el captcha!', 'Error en captcha!');
+    }
   }
 
   upload(event : any){

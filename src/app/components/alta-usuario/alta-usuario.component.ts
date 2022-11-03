@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CaptchaService } from 'src/app/services/captcha.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
@@ -13,8 +14,9 @@ export class AltaUsuarioComponent implements OnInit {
 
   public grupoControles !: FormGroup;
   private foto : any;
+  public captcha : any;
 
-  constructor(private fb : FormBuilder, public fs : FirestoreService, private toastr: ToastrService, private router : Router) { 
+  constructor(private fb : FormBuilder, public fs : FirestoreService, private toastr: ToastrService, private router : Router, public cs : CaptchaService) { 
     this.grupoControles = this.fb.group({
       'nombre': ['',[Validators.required]],
       'apellido' : ['',[Validators.required]],
@@ -24,6 +26,7 @@ export class AltaUsuarioComponent implements OnInit {
       'mail' : ['',[Validators.required]],
       'clave' : ['',[Validators.required]],
       'foto' : [],
+      'captcha': ['',[Validators.required]]
     });
   }
 
@@ -39,13 +42,16 @@ export class AltaUsuarioComponent implements OnInit {
       perfil : 'paciente',
       foto : this.foto
     }
-
+    if(this.captcha == this.cs.palabra){
     this.fs.agregarUsuario(usuario);
     this.toastr.success('Confirme mail ahora!', 'Usuario registrado!');
     this.grupoControles.reset();
     setTimeout(() => {
       this.router.navigateByUrl('/login');
     }, 3000);
+    }else{
+      this.toastr.error('Verifique el captcha!', 'Error en captcha!');
+    }
   }
 
   upload(event : any){

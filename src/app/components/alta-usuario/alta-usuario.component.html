@@ -39,6 +39,11 @@
 		<div class="form-field d-flex align-items-center">
 			<input type="file" name="foro" formControlName="foto" placeholder="Foto" (change)="upload($event)">
 		</div>
+		<h1 class="text-center" style="margin-bottom: 10px; background-color: rgb(150, 248, 105);">{{this.cs.palabra}}</h1>
+		<div class="form-field d-flex align-items-center">
+			<input type="text" name="captcha" formControlName="captcha" placeholder="Captcha" [(ngModel)]="captcha">
+		</div>
+		
 		<button class="btn mt-3" type="submit" [disabled]='grupoControles.invalid'>Registrar</button>
 	</form>
 </div>

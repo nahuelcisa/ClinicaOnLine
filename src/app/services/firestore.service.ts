@@ -79,12 +79,17 @@ export class FirestoreService {
   ListaUsuarios():Observable<any[]>{
     return collectionData(this.usuariosCollectionReference,{idField: 'id'}) as Observable<any[]>;
   }
+
   ListaTurnos():Observable<any[]>{
     return collectionData(this.turnoCollectionReference,{idField: 'id'}) as Observable<any[]>;
   }
 
   ListaEspecialistas():Observable<any[]>{
     return collectionData(this.profesionalCollectionReference,{idField: 'id'}) as Observable<any[]>;
+  }
+
+  ListaPacientes():Observable<any[]>{
+    return collectionData(this.pacientesCollectionReference,{idField: 'id'}) as Observable<any[]>;
   }
 
   ModificarUsuario(usuario:any,id:any){

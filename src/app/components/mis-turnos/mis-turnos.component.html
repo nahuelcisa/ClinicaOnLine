@@ -72,13 +72,13 @@
                     <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != ''"
                     (click)="btnVerComentario(turno,contentComentario)">Ver Reseña</button> 
 
-                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != ''"
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != '' && turno.diagnostico != ''"
                     (click)="btnVerDiagnostico(turno,contentDiagnostico)">Ver Diagnostico</button> 
 
-                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.calificacion == '' && turno.estado == 'realizado'"
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.calificacion == '' && turno.estado == 'finalizado'"
                     (click)="btnCalificarAtencion(turno,contentAtencion)">Calificar Atencion</button> 
 
-                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != '' && turno.estado == 'realizado' && turno.encuesta == ''"
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != '' && turno.estado == 'finalizado' && turno.encuesta == ''"
                     (click)="btnCompletarEncuesta(turno,contentEncuesta)">Completar encuesta</button> 
                 </td>
               </tr>

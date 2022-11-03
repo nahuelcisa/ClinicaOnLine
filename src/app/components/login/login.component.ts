@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
   public grupoControles !: FormGroup;
   public usuarios : any;
   public cargando : boolean = false;
+  public pacientes : any;
+  public profesionales : any;
+
   constructor(private fb : FormBuilder, public as : AuthService, private router : Router, private fs : FirestoreService, private toastr: ToastrService) { 
     this.grupoControles = this.fb.group({
       'email': ['',[Validators.required]],
@@ -23,6 +26,15 @@ export class LoginComponent implements OnInit {
     this.fs.ListaUsuarios().subscribe((data)=>{
       this.usuarios = data;
     });
+
+    this.fs.ListaPacientes().subscribe((data)=>{
+      this.pacientes = data;
+    });
+
+    this.fs.ListaEspecialistas().subscribe((data)=>{
+      this.profesionales = data;
+    });
+
   }
 
   iniciarSesion(){
@@ -65,23 +77,23 @@ export class LoginComponent implements OnInit {
   inicioRapido(a : any){
     switch(a){
       case 1:
-        this.grupoControles.get('email')?.setValue('nahuelcisa17@gmail.com');
+        this.grupoControles.get('email')?.setValue(`${this.pacientes[0].mail}`);
         this.grupoControles.get('clave')?.setValue('123456789');
         break;
       case 2:
-        this.grupoControles.get('email')?.setValue('nahuelcisa17@gmail.com');
+        this.grupoControles.get('email')?.setValue(`${this.pacientes[1].mail}`);
         this.grupoControles.get('clave')?.setValue('123456789');
         break;
       case 3:
-        this.grupoControles.get('email')?.setValue('nahuelcisa17@gmail.com');
+        this.grupoControles.get('email')?.setValue(`${this.pacientes[2].mail}`);
         this.grupoControles.get('clave')?.setValue('123456789');
         break;
       case 4:
-        this.grupoControles.get('email')?.setValue('lehiy44418@3mkz.com');
+        this.grupoControles.get('email')?.setValue(`${this.profesionales[0].mail}`);
         this.grupoControles.get('clave')?.setValue('123456789');
         break;
       case 5:
-        this.grupoControles.get('email')?.setValue('yakan52521@fgvod.com');
+        this.grupoControles.get('email')?.setValue(`${this.profesionales[1].mail}`);
         this.grupoControles.get('clave')?.setValue('123456789');
         break;
       case 6:

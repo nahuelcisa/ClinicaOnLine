@@ -42,6 +42,7 @@ export class SolicitarTurnoComponent implements OnInit {
       this.admin = true;
     }
     this.fs.ListaUsuarios().subscribe((data)=>{
+      this.usuarios = [];
       data.forEach((usuario)=>{
         if(usuario.perfil == 'paciente'){
           this.usuarios.push(usuario);
@@ -112,7 +113,7 @@ export class SolicitarTurnoComponent implements OnInit {
       this.cargarHoras();
       this.diaElegido = dia;
       this.turnos.forEach((turno: any) => {
-        if(turno.profesional.mail == this.especialistaElegido.mail && turno.estado != 'finalizado' && turno.dia[0] == this.diaElegido[0]){
+        if(turno.profesional.mail == this.especialistaElegido.mail && (turno.estado != 'finalizado' && turno.estado != 'cancelado' ) && turno.dia[0] == this.diaElegido[0]){
           let indice = this.horasLunVie.indexOf(turno.hora);
           if(indice != -1){
             this.horasLunVie.splice(indice,1);

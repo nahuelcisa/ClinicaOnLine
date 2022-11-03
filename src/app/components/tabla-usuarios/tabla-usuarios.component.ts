@@ -19,10 +19,10 @@ export class TablaUsuariosComponent implements OnInit {
 
   habilitarProfesional(usuario : any, habilitar : any){
     if(!habilitar){
-      usuario.habilitado = true;
+      usuario.habilitado = false;
   
     }else{
-      usuario.habilitado = false;
+      usuario.habilitado = true;
     }
     this.fs.ModificarUsuario(usuario,usuario.id);
   }
