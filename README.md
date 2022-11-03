@@ -32,10 +32,6 @@ Una vez iniciada la sesion, para solicitar un turno debemos realizar lo siguient
 
 <img src="./src/assets/capturas/sacarTurno.gif" alt="drawing"/>
 
-<pre>
-    <img src="./src/assets/capturas/registroPaciente.png" alt="drawing" style="width:400px;"/>     <img src="./src/assets/capturas/registroProfesional.png" alt="drawing" style="width:400px;"/>
-</pre>
-
 Una vez solicitado el turno, podremos visualizarlo en la seccion "mis turnos" como se muestra a continuacion.
 
 <pre>
