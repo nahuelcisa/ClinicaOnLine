@@ -25,8 +25,13 @@ import { NavComponent } from './components/nav/nav.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component';
 import { EspecialistasPipe } from './pipes/especialistas.pipe';
-import { HorasTurnosPipe } from './pipes/horas-turnos.pipe';
 import { MisTurnosComponent } from './components/mis-turnos/mis-turnos.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatSliderModule} from '@angular/material/slider';
+import { EspecialistaPipe } from './pipes/especialista.pipe';
+import { EspecialidadPipe } from './pipes/especialidad.pipe';
+import { PacientePipe } from './pipes/paciente.pipe';
+
 
 
 @NgModule({
@@ -43,8 +48,10 @@ import { MisTurnosComponent } from './components/mis-turnos/mis-turnos.component
     PerfilComponent,
     SolicitarTurnoComponent,
     EspecialistasPipe,
-    HorasTurnosPipe,
-    MisTurnosComponent
+    MisTurnosComponent,
+    EspecialistaPipe,
+    EspecialidadPipe,
+    PacientePipe
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,9 @@ import { MisTurnosComponent } from './components/mis-turnos/mis-turnos.component
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgbModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+<app-nav></app-nav>
 <div class="container text-center">
     <div class="row">
         <div class="col">
@@ -5,20 +6,25 @@
         </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col" *ngIf="this.as.user.perfil == 'paciente'">
         <div class="mb-3">
             <label  class="form-label">Especialista</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nombre especialista">
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nombre especialista" [(ngModel)]="filtroEspecialista">
         </div>
       </div>
-      <div class="col">
+
+      <div class="col" *ngIf="this.as.user.perfil == 'profesional'">
+        <div class="mb-3">
+            <label  class="form-label">Paciente</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nombre paciente" [(ngModel)]="filtroPaciente">
+        </div>
+      </div>
         <div class="col">
             <div class="mb-3">
                 <label  class="form-label">Especialidad</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Especialidad">
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Especialidad" [(ngModel)]="filtroEspecialidad">
             </div>
           </div>
-      </div>
     </div>
 
 
@@ -28,7 +34,8 @@
             <thead>
               <tr>
                 <th scope="col">Especialidad</th>
-                <th scope="col">Especialista</th>
+                <th scope="col" *ngIf="this.as.user.perfil == 'paciente'">Especialista</th>
+                <th scope="col" *ngIf="this.as.user.perfil == 'profesional'">Paciente</th>
                 <th scope="col">Dia</th>
                 <th scope="col">Hora</th>
                 <th scope="col">Estado</th>
@@ -36,14 +43,43 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let turno of this.turnos">
+              <tr *ngFor="let turno of this.turnos  | especialidad : filtroEspecialidad
+                                                    | especialista : filtroEspecialista
+                                                    | paciente : filtroPaciente">
                 <td>{{turno.profesional.especialidad}}</td>
-                <td>{{turno.profesional.nombre}} {{turno.profesional.apellido}}</td>
+                <td *ngIf="this.as.user.perfil == 'paciente'">{{turno.profesional.nombre}} {{turno.profesional.apellido}}</td>
+                <td *ngIf="this.as.user.perfil == 'profesional'">{{turno.paciente.nombre}} {{turno.paciente.apellido}}</td>
                 <td>{{turno.dia[1]}} - {{turno.dia[0]}}</td>
                 <td>{{turno.hora}}</td>
                 <td>{{turno.estado}}</td>
                 <td> 
-                    <button type="button" class="btn btn-outline-danger btn-lg" *ngIf="turno.estado == 'pendiente'" data-bs-toggle="modal" data-bs-target="#exampleModal">Cancelar</button> 
+                    <button type="button" class="btn btn-outline-danger btn-lg" *ngIf="turno.estado == 'pendiente' && this.as.user.perfil == 'paciente'"
+                    (click)="btnCancelar(turno,contentCancelacion)">Cancelar</button> 
+
+                    <button type="button" class="btn btn-outline-warning btn-lg" *ngIf="turno.estado == 'aceptado' && this.as.user.perfil == 'profesional'"
+                    (click)="btnFinalizar(turno,contentFinalizar)">Finalizar</button> 
+
+                    <button type="button" class="btn btn-outline-danger btn-lg" *ngIf="turno.estado == 'aceptado' && this.as.user.perfil == 'profesional'"
+                    (click)="btnCancelar(turno,contentCancelacion)">Cancelar</button> 
+
+
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.estado == 'pendiente' && this.as.user.perfil == 'profesional'"
+                    (click)="btnAceptar(turno)">Aceptar</button> 
+                    <button type="button" class="btn btn-outline-danger btn-lg" *ngIf="turno.estado == 'pendiente' && this.as.user.perfil == 'profesional'"
+                    (click)="btnCancelar(turno,contentRechazar)">Rechazar</button> 
+
+
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != ''"
+                    (click)="btnVerComentario(turno,contentComentario)">Ver Reseña</button> 
+
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != ''"
+                    (click)="btnVerDiagnostico(turno,contentDiagnostico)">Ver Diagnostico</button> 
+
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.calificacion == '' && turno.estado == 'realizado'"
+                    (click)="btnCalificarAtencion(turno,contentAtencion)">Calificar Atencion</button> 
+
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != '' && turno.estado == 'realizado' && turno.encuesta == ''"
+                    (click)="btnCompletarEncuesta(turno,contentEncuesta)">Completar encuesta</button> 
                 </td>
               </tr>
             </tbody>
@@ -52,21 +88,152 @@
     </div>
   </div>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
+  <ng-template #contentCancelacion let-modal>
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Motivo de cancelacion</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title" id="modal-basic-title">Motivo de cancelacion</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
         </div>
         <div class="modal-body">
-            <label  class="form-label">Ingrese motivo</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="...">
+            <div class="mb-3">
+                <label for="dateOfBirth">Por que quiere cancelar el turno?</label>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Deje un mensaje"
+                        [(ngModel)]="this.msjCancelar"></textarea>
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Enviar</button>
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close(this.msjCancelar)"
+                [disabled]="this.msjCancelar == ''">Enviar</button>
         </div>
-      </div>
-    </div>
-  </div>
+    </ng-template>
+
+  <ng-template #contentFinalizar let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Cierre del turno</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="dateOfBirth">Mensaje sobre el turno</label>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Deje un mensaje"
+                        [(ngModel)]="this.msjCancelar"></textarea>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="dateOfBirth">Diagnostico</label>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Deje un diagnostico"
+                        [(ngModel)]="this.msjDiagnostico"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close(this.msjCancelar)"
+                [disabled]="this.msjCancelar == ''">Enviar</button>
+        </div>
+    </ng-template>
+
+  <ng-template #contentRechazar let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Motivo del rechazo</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="dateOfBirth">Por que quiere rechazar el turno?</label>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Deje un mensaje"
+                        [(ngModel)]="this.msjCancelar"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close(this.msjCancelar)"
+                [disabled]="this.msjCancelar == ''">Enviar</button>
+        </div>
+    </ng-template>
+
+  <ng-template #contentEncuesta let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Encuesta de atencion</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="dateOfBirth">Volveria a asistir a esta clinica?</label>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Deje un mensaje"
+                        [(ngModel)]="this.msjCancelar"></textarea>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="dateOfBirth">Que tan satisfactoria fue su atencion 1-10</label>
+                <div class="input-group">
+                    <mat-slider
+                        thumbLabel
+                        tickInterval="1"
+                        step="1"
+                        min="1"
+                        max="10"
+                        aria-label="units"
+                        [(ngModel)]="slideEncuesta"></mat-slider>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close(this.msjCancelar)"
+                [disabled]="this.msjCancelar == ''">Enviar</button>
+        </div>
+    </ng-template>
+
+    <ng-template #contentAtencion let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Deje un comentario sobre su atencion</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Deje un mensaje"
+                        [(ngModel)]="this.msjCancelar"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close(this.msjCancelar)"
+                [disabled]="this.msjCancelar == ''">Enviar</button>
+        </div>
+    </ng-template>
+
+    <ng-template #contentComentario let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Mensaje de reseña</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="dateOfBirth">{{this.msjComentario}}</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cerrar</button>
+        </div>
+    </ng-template>
+
+    <ng-template #contentDiagnostico let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Diagnostico del paciente</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="dateOfBirth">{{this.msjComentario}}</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cerrar</button>
+        </div>
+    </ng-template>

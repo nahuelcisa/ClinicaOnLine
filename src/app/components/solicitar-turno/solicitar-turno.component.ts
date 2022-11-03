@@ -112,7 +112,7 @@ export class SolicitarTurnoComponent implements OnInit {
       this.cargarHoras();
       this.diaElegido = dia;
       this.turnos.forEach((turno: any) => {
-        if(turno.profesional.mail == this.especialistaElegido.mail && turno.estado != 'terminado' && turno.dia[0] == this.diaElegido[0]){
+        if(turno.profesional.mail == this.especialistaElegido.mail && turno.estado != 'finalizado' && turno.dia[0] == this.diaElegido[0]){
           let indice = this.horasLunVie.indexOf(turno.hora);
           if(indice != -1){
             this.horasLunVie.splice(indice,1);
@@ -141,7 +141,8 @@ export class SolicitarTurnoComponent implements OnInit {
       estado : 'pendiente',
       comentario : '',
       encuesta: '',
-      calificacion: ''
+      calificacion: '',
+      diagnostico : ''
     }
 
     if(this.admin){

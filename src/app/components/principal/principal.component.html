@@ -1,2 +1,2 @@
-<app-nav></app-nav>
-<p>principal works!</p>
+<app-solicitar-turno *ngIf="this.as.user.perfil == 'paciente' || this.as.user.perfil == 'administrador'"></app-solicitar-turno>
+<app-mis-turnos *ngIf="this.as.user.perfil == 'profesional'"></app-mis-turnos>
