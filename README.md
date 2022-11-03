@@ -1,27 +1,39 @@
-# TpClinicaOnLine
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
+# Trabajo práctico - Laboratorio IV - Clinica OnLine
 
-## Development server
+<p  align="center">
+     <img src="./src/assets/registros-medicos.png" alt="drawing" style="width:400px;"/> 
+</p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<br/>  
 
-## Code scaffolding
+## **Link**
+https://clinicaonline-1e39f.web.app/
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### **Funcion principal**
+La finalidad de dicho sistema es gestionar turnos de una clinica OnLine, solicitandolos y cambiando los estados del mismo segun corresponda.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+<br/>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<p  align="center">
+     <img src="./src/assets/capturas/login.png" alt="drawing" style="width:400px;"/> 
+</p>
+Para iniciar a utilizar el sistema, primero debemos o logearnos si ya estamos registrados, o completar un formulario de registro correspondiente a si somos paciente o especialista.
 
-## Running end-to-end tests
+<pre>
+     <img src="./src/assets/capturas/paciente-profesional.png" alt="drawing" style="width:400px;"/>           <img src="./src/assets/capturas/registroPaciente.png" alt="drawing" style="width:400px;"/>     <img src="./src/assets/capturas/registroProfesional.png" alt="drawing" style="width:400px;"/>
+</pre>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Una vez iniciada la sesion, para solicitar un turno debemos realizar lo siguiente:
 
-## Further help
+<pre>
+     <img src="./src/assets/capturas/sacarTurno.gif" alt="drawing" style="width:400px;"/>           <img src="./src/assets/capturas/registroPaciente.png" alt="drawing" style="width:400px;"/>     <img src="./src/assets/capturas/registroProfesional.png" alt="drawing" style="width:400px;"/>
+</pre>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Una vez solicitado el turno, podremos visualizarlo en la seccion "mis turnos" como se muestra a continuacion.
+
+<pre>
+     <img src="./src/assets/capturas/misTurnos.png" alt="drawing" style="width:400px;"/>           <img src="./src/assets/capturas/registroPaciente.png" alt="drawing" style="width:400px;"/>     <img src="./src/assets/capturas/registroProfesional.png" alt="drawing" style="width:400px;"/>
+</pre>
