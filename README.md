@@ -30,7 +30,8 @@ Para iniciar a utilizar el sistema, primero debemos o logearnos si ya estamos re
 
 Una vez iniciada la sesion, para solicitar un turno debemos realizar lo siguiente:
 
-    <img src="./src/assets/capturas/sacarTurno.gif" alt="drawing" style="width:400px;"/>
+<img src="./src/assets/capturas/sacarTurno.gif" alt="drawing" style="width:400px;"/>
+
 <pre>
     <img src="./src/assets/capturas/registroPaciente.png" alt="drawing" style="width:400px;"/>     <img src="./src/assets/capturas/registroProfesional.png" alt="drawing" style="width:400px;"/>
 </pre>
