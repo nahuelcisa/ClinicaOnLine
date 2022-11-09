@@ -6,41 +6,71 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  user: any = '' /* {
+  user: any = ''/* {
     apellido
 : 
-"Cisa",
+"oggioni",
 clave
 : 
 "123456789",
 dni
 : 
-43259233,
+34987153,
 edad
 : 
-21,
-especialidad
-: 
-"clinico",
+34,
 foto
 : 
-"https://firebasestorage.googleapis.com/v0/b/clinicaonline-1e39f.appspot.com/o/favico.png?alt=media&token=741558a7-a2f2-4572-8b7c-cec457dce230",
-habilitado
-: 
-true,
+"https://firebasestorage.googleapis.com/v0/b/clinicaonline-1e39f.appspot.com/o/3774299.png?alt=media&token=9d1cc56d-88cc-444e-821b-c77075f0fb59",
 id
 : 
-"FxmaHQs1NnRuTxNWfCQd",
+"XRXRE3g0cszwJWNSDFHF",
 mail
 : 
-"lehiy44418@3mkz.com",
+"yekicox853@dmtubes.com",
 nombre
 : 
-"Nahuel",
+"Ezequiel",
+obraSocial
+: 
+"Osde",
 perfil
 : 
-"profesional"
+"paciente"
   } */
+  /* { apellido
+  : 
+  "Valentino",
+  clave
+  : 
+  "123456789",
+  dni
+  : 
+  10946789,
+  edad
+  : 
+  54,
+  especialidad
+  : 
+  "Clinico",
+  foto
+  : 
+  "https://firebasestorage.googleapis.com/v0/b/clinicaonline-1e39f.appspot.com/o/paciente.png?alt=media&token=13f55ca4-a36d-437a-920a-47e366bac5ca",
+  habilitado
+  : 
+  true,
+  id
+  : 
+  "mIxat8NVwsKUacTs9HCv",
+  mail
+  : 
+  "podok52828@harcity.com",
+  nombre
+  : 
+  "Valentin",
+  perfil
+  : 
+  "profesional"} */
   /*  = {
     apellido
 : 

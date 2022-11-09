@@ -46,10 +46,13 @@
                       <p class="text-muted">{{this.as.user.perfil}}</p>
                     </div>
                   </div>
-                  <div class="d-flex justify-content-start">
-                    <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-                    <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                    <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                  <div *ngIf="this.as.user.perfil == 'paciente'">
+                    <hr class="mt-0 mb-4">
+                    <div class="row pt-1">
+                      <div class="col-12 mb-12">
+                        <button type="button" class="btn btn-success" (click)="verHistoriaClinica(this.as.user, contentDiagnostico )">Ver Historia Clinica</button>
+                      </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -59,3 +62,40 @@
       </div>
     </div>
   </section>
+
+
+  <ng-template #contentDiagnostico let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Historia clinica</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div *ngIf="this.historiaClinica.length === 0">
+      <div class="modal-body" *ngFor="let item of this.historiaClinica">
+          <div class="mb-3">
+            <label for="dateOfBirth">Altura: {{item.altura}}</label>
+          </div>
+          <div class="mb-3">
+            <label for="dateOfBirth">peso: {{item.peso}}</label>
+          </div>
+          <div class="mb-3">
+            <label for="dateOfBirth">Temperatura: {{item.temperatura}}</label>
+          </div>
+          <div class="mb-3">
+            <label for="dateOfBirth">Presion: {{item.presion}}</label>
+          </div>
+  
+          <div class="mb-3" *ngIf="item.dinamico1[0] != ''">
+            <label for="dateOfBirth">{{item.dinamico1[0]}} : {{item.dinamico1[1]}}</label>
+          </div>
+          <div class="mb-3" *ngIf="item.dinamico2[0] != ''">
+            <label for="dateOfBirth">{{item.dinamico2[0]}} : {{item.dinamico2[1]}}</label>
+          </div>
+          <div class="mb-3" *ngIf="item.dinamico3[0] != ''">
+            <label for="dateOfBirth">{{item.dinamico3[0]}} : {{item.dinamico3[1]}}</label>
+          </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cerrar</button>
+    </div>
+</ng-template>

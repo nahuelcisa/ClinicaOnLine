@@ -31,6 +31,8 @@ import {MatSliderModule} from '@angular/material/slider';
 import { EspecialistaPipe } from './pipes/especialista.pipe';
 import { EspecialidadPipe } from './pipes/especialidad.pipe';
 import { PacientePipe } from './pipes/paciente.pipe';
+import { PacientesComponent } from './components/pacientes/pacientes.component';
+import { FiltroSupremoPipe } from './pipes/filtro-supremo.pipe';
 
 
 
@@ -51,7 +53,9 @@ import { PacientePipe } from './pipes/paciente.pipe';
     MisTurnosComponent,
     EspecialistaPipe,
     EspecialidadPipe,
-    PacientePipe
+    PacientePipe,
+    PacientesComponent,
+    FiltroSupremoPipe
   ],
   imports: [
     BrowserModule,

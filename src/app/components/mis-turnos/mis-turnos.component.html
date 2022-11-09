@@ -26,6 +26,14 @@
             </div>
           </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <div class="mb-3">
+            <label  class="form-label">Filtro Mejorado</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Fecha/Hora/Paciente/Especialidad..." [(ngModel)]="filtroSupremo">
+        </div>
+      </div>
+    </div>
 
 
     <div class="row" style="margin-top: 50px;">
@@ -45,7 +53,8 @@
             <tbody>
               <tr *ngFor="let turno of this.turnos  | especialidad : filtroEspecialidad
                                                     | especialista : filtroEspecialista
-                                                    | paciente : filtroPaciente">
+                                                    | paciente : filtroPaciente
+                                                    | filtroSupremo : filtroSupremo">
                 <td>{{turno.profesional.especialidad}}</td>
                 <td *ngIf="this.as.user.perfil == 'paciente'">{{turno.profesional.nombre}} {{turno.profesional.apellido}}</td>
                 <td *ngIf="this.as.user.perfil == 'profesional'">{{turno.paciente.nombre}} {{turno.paciente.apellido}}</td>
@@ -74,6 +83,9 @@
 
                     <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != '' && turno.diagnostico != ''"
                     (click)="btnVerDiagnostico(turno,contentDiagnostico)">Ver Diagnostico</button> 
+
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.historia == '' && this.as.user.perfil == 'profesional'"
+                    (click)="btnVerHistoriaClinica(turno,contentHistoria)">Subir Historia Clinica</button> 
 
                     <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.calificacion == '' && turno.estado == 'finalizado'"
                     (click)="btnCalificarAtencion(turno,contentAtencion)">Calificar Atencion</button> 
@@ -105,6 +117,100 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" (click)="modal.close(this.msjCancelar)"
                 [disabled]="this.msjCancelar == ''">Enviar</button>
+        </div>
+    </ng-template>
+
+  <ng-template #contentHistoria let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Historia Clinica</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="dateOfBirth">Altura</label>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Altura"
+                        [(ngModel)]="this.altura"></textarea>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="dateOfBirth">Peso</label>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Peso"
+                        [(ngModel)]="this.peso"></textarea>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="dateOfBirth">Temperatura</label>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Temperatura"
+                        [(ngModel)]="this.temperatura"></textarea>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="dateOfBirth">Presion</label>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Presion"
+                        [(ngModel)]="this.presion"></textarea>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="dateOfBirth">Datos Dinamico 1</label>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Clave"
+                        [(ngModel)]="this.clave1"></textarea>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Valor"
+                        [(ngModel)]="this.valor1"></textarea>
+                </div>
+            </div>
+
+            <div *ngIf="this.dinamico >= 2">
+                <div class="mb-3">
+                    <label for="dateOfBirth">Datos Dinamico 2</label>
+                    <div class="input-group">
+                        <textarea class="form-control" placeholder="Clave"
+                            [(ngModel)]="this.clave2"></textarea>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="input-group">
+                        <textarea class="form-control" placeholder="Valor"
+                            [(ngModel)]="this.valor2"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="this.dinamico > 2">
+                <div class="mb-3">
+                    <label for="dateOfBirth">Datos Dinamico 3</label>
+                    <div class="input-group">
+                        <textarea class="form-control" placeholder="Clave"
+                            [(ngModel)]="this.clave3"></textarea>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="input-group">
+                        <textarea class="form-control" placeholder="Valor"
+                            [(ngModel)]="this.valor3"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="agregarCampo()"
+                [disabled]="this.dinamico == 3 ">Agregar</button>
+
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close(this.msjCancelar)"
+                [disabled]="this.presion == ''">Enviar</button>
         </div>
     </ng-template>
 

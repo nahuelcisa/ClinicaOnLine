@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { MisTurnosComponent } from './components/mis-turnos/mis-turnos.component';
 import { NavComponent } from './components/nav/nav.component';
+import { PacientesComponent } from './components/pacientes/pacientes.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'perfil', component: PerfilComponent},
   {path: 'turno', component: SolicitarTurnoComponent},
   {path: 'misturnos', component: MisTurnosComponent},
+  {path: 'pacientes', component: PacientesComponent},
   {path:'*', component:LoginComponent},
 ];
 

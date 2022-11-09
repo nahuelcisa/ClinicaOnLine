@@ -4,11 +4,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.scss']
+  selector: 'app-pacientes',
+  templateUrl: './pacientes.component.html',
+  styleUrls: ['./pacientes.component.scss']
 })
-export class PerfilComponent implements OnInit {
+export class PacientesComponent implements OnInit {
 
   public usuarios : any = [];
   public turnos : any;
@@ -21,8 +21,8 @@ export class PerfilComponent implements OnInit {
   public msjCancelar : string = '';
   public closeResult : any;
 
-
   constructor(private fs : FirestoreService, public as: AuthService, private modalService: NgbModal) { 
+
     this.fs.ListaTurnos().subscribe((data)=>{
 
       this.turnos = data;
@@ -49,7 +49,6 @@ export class PerfilComponent implements OnInit {
         this.historiaClinica.push(element.historia);
       }
     });
-    console.log(this.historiaClinica);
     this.openHistoriaClinica(modal);
   }
 

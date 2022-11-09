@@ -23,6 +23,23 @@ export class MisTurnosComponent implements OnInit {
   public filtroEspecialista : any;
   public filtroEspecialidad : any;
   public filtroPaciente : any;
+  public filtroSupremo : any;
+
+  public altura : any;
+  public peso: any;
+  public temperatura : any;
+  public presion : any;
+
+  public clave1 : any = '';
+  public valor1: any = '';
+
+  public clave2 : any = '';
+  public valor2: any = '';
+
+  public clave3 : any = '';
+  public valor3: any = '';
+
+  public dinamico = 1;
   
   constructor(public as : AuthService, public fs : FirestoreService, private modalService: NgbModal, private toastr: ToastrService) {
     this.fs.ListaTurnos().subscribe((data)=>{
@@ -41,6 +58,10 @@ export class MisTurnosComponent implements OnInit {
         });
       }
     });
+  }
+
+  agregarCampo(){
+    this.dinamico++;
   }
 
   openCancelacion(content: any) {
@@ -68,6 +89,31 @@ export class MisTurnosComponent implements OnInit {
           this.turnoSeleccionado.estado = 'finalizado'
           this.fs.ModificarTurno(this.turnoSeleccionado, this.turnoSeleccionado.id).then(()=>{
             this.toastr.warning('Se finalizo el turno exitosamente', 'Turno finalizado!!');
+          });
+        },
+        (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        },
+    );
+  }
+
+  openHistoriaClinica(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+        (result) => {
+
+          let historia = {
+            altura : this.altura,
+            peso : this.peso,
+            temperatura : this.temperatura,
+            presion : this.presion,
+            dinamico1: [this.clave1,this.valor1],
+            dinamico2: [this.clave2,this.valor2],
+            dinamico3: [this.clave3,this.valor3]
+          }
+
+          this.turnoSeleccionado.historia = historia;
+          this.fs.ModificarTurno(this.turnoSeleccionado, this.turnoSeleccionado.id).then(()=>{
+            this.toastr.success('Se Cargo la historia', 'Historia cargada!!');
           });
         },
         (reason) => {
@@ -150,6 +196,11 @@ export class MisTurnosComponent implements OnInit {
     this.turnoSeleccionado = turno;
     this.turnoSeleccionado.estado = 'aceptado';
           this.fs.ModificarTurno(this.turnoSeleccionado, this.turnoSeleccionado.id);
+  }
+
+  btnVerHistoriaClinica(turno: any, modal : any){
+    this.turnoSeleccionado = turno;
+    this.openHistoriaClinica(modal);
   }
 
   btnFinalizar(turno : any, modal : any){
