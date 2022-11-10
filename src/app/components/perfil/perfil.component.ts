@@ -21,6 +21,19 @@ export class PerfilComponent implements OnInit {
   public msjCancelar : string = '';
   public closeResult : any;
 
+  horasLunVie : any = [
+    '8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00',
+    '17:30','18:00','18:30','19:00'
+  ];
+
+  public horaDesdeLun : any;
+  public horaHastaLun : any;
+
+  horasSab : any = [
+    '8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00'
+  ];
+
+
 
   constructor(private fs : FirestoreService, public as: AuthService, private modalService: NgbModal) { 
     this.fs.ListaTurnos().subscribe((data)=>{
@@ -63,6 +76,21 @@ export class PerfilComponent implements OnInit {
     );
   }
 
+  mostrar(){
+    console.log(this.horaDesdeLun);
+    console.log(this.horaHastaLun);
+  }
+
+  cargarHoras(){
+    this.horasLunVie = [
+      '8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00',
+      '17:30','18:00','18:30','19:00'
+    ];
+    this.horasSab  = [
+      '8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00'
+    ];
+  }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
         return 'by pressing ESC';
@@ -73,8 +101,8 @@ export class PerfilComponent implements OnInit {
     }
   }
 
-
   ngOnInit(): void {
+    
   }
 
 }

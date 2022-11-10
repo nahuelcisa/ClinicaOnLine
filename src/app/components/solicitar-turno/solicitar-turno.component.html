@@ -37,18 +37,26 @@
     <div class="row" style="margin-top: 30px;" >
         <h2 class="text-center" style="margin-bottom: 15px; text-decoration:underline;">Seleccione Especialidad</h2>
       <div class="col d-grid gap-2" *ngFor="let especialidad of this.especialidades">
-        <button type="button" class="btn btn-outline-dark btn-lg " (click)="capturarEspecialidad(especialidad)">{{especialidad}}</button>
+        <div align="center">
+          <img src="../../../assets/cardiology-medical-logo-vector.jpg" *ngIf="especialidad == 'Cardiologo'"  (click)="capturarEspecialidad(especialidad)" width="300px" height="300px">
+        </div>
+
+        <div align="center">
+          <img src="../../../assets/png-transparent-hospital-logo-clinic-health-care-physician-business.png"  (click)="capturarEspecialidad(especialidad)" *ngIf="especialidad == 'Clinico'" width="300px" height="300px">
+        </div>
+
+        <!-- <button type="button" class="btn btn-dark btn-lg " (click)="capturarEspecialidad(especialidad)">{{especialidad}}</button> -->
       </div>
     </div>
 
     <div class="row" style="margin-top: 30px;" *ngIf="this.especialidadElegida" >
         <h2 class="text-center" style="margin-bottom: 15px; text-decoration:underline;">Seleccione Especialista</h2>
       <div class="col d-flex justify-content-center" *ngFor="let especialista of this.especialistas | especialistas : this.especialidadElegida">
-            <div class="card text-center" style="width: 18rem" >
-                <img src="{{especialista.foto}}" class="card-img-top" alt="...">
+            <div class="card text-center" style="width: 18rem;" >
+                <img src="{{especialista.foto}}" class="card-img-top" alt="..." style="border-radius: 100%;">
                 <div class="card-body">
                 <h5 class="card-title">{{especialista.nombre}} {{especialista.apellido}}</h5>
-                <button type="button" class="btn btn-outline-dark btn-lg" (click)="capturarEspecialista(especialista)">Seleccionar</button>
+                <button type="button" class="btn btn-dark btn-lg" (click)="capturarEspecialista(especialista)">Seleccionar</button>
                 </div>
             </div>
       </div>
@@ -58,7 +66,7 @@
         <h2 class="text-center" style="margin-bottom: 15px; text-decoration:underline;">Seleccione Dia</h2>
         <div class="col d-flex justify-content-center" *ngFor="let dia of this.tablaDias" style="margin-top: 30px; margin-left: 15px; margin-left: 15px;
         margin-bottom: 15px;">
-            <button type="button" class="btn btn-outline-dark btn-lg" (click)="capturarDia(dia)">{{dia[0]}}</button>
+            <button type="button" class="btn btn-dark btn-lg" (click)="capturarDia(dia)">{{dia[0]}}</button>
         </div>
     </div>
 
@@ -66,7 +74,7 @@
         <h2 class="text-center" style="margin-bottom: 15px; text-decoration:underline;">Seleccione Horario</h2>
             <div class="col d-flex justify-content-center" *ngFor="let hora of this.horasLunVie " style="margin-top: 30px; margin-left: 15px; margin-left: 15px;
             margin-bottom: 15px;">
-                <button type="button" class="btn btn-outline-dark btn-lg" (click)="seleccionarTurno(hora)">{{hora}}</button>
+                <button type="button" class="btn btn-dark btn-lg" (click)="seleccionarTurno(hora)">{{hora}}</button>
             </div>
     </div>
 
@@ -74,7 +82,7 @@
         <h2 class="text-center" style="margin-bottom: 15px; text-decoration:underline;">Seleccione Horario</h2>
         <div class="col d-flex justify-content-center" *ngFor="let hora of this.horasSab" style="margin-top: 30px; margin-left: 15px; margin-left: 15px;
         margin-bottom: 15px;">
-            <button type="button" class="btn btn-outline-dark btn-lg" (click)="seleccionarTurno(hora)">{{hora}}</button>
+            <button type="button" class="btn btn-dark btn-lg" (click)="seleccionarTurno(hora)">{{hora}}</button>
         </div>
     </div>
 </div>

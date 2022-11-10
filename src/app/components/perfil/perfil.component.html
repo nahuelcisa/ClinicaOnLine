@@ -1,5 +1,5 @@
 <app-nav></app-nav>
-<section class="vh-95" style="margin-top: 200px;">
+<section class="vh-95" style="margin-top: 150px;">
     <div class="container py-5 h-95">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-6 mb-4 mb-lg-0">
@@ -53,6 +53,32 @@
                         <button type="button" class="btn btn-success" (click)="verHistoriaClinica(this.as.user, contentDiagnostico )">Ver Historia Clinica</button>
                       </div>
                   </div>
+                  </div>
+                  <div *ngIf="this.as.user.perfil == 'profesional'">
+                  <hr class="mt-0 mb-4">
+                    <h2>Mis horarios</h2>
+                    <div class="row pt-1">
+                    <h4>Lunes a viernes</h4>
+                      <div class="col-6 mb-3">
+                        <mat-form-field appearance="fill">
+                          <mat-label>Elija horario</mat-label>
+                          <mat-select [(value)]="horaDesdeLun">
+                            <mat-option *ngFor="let horas of horasLunVie" [value]="horas">{{horas}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-6 mb-3">
+                        <mat-form-field appearance="fill">
+                          <mat-label >Elija horario</mat-label>
+                          <mat-select [(value)]="horaHastaLun">
+                            <mat-option *ngFor="let horas of horasLunVie" [value]="horas">{{horas}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row pt-1">
+                      <button (click)="mostrar()"> test </button>
+                    </div>
                   </div>
                 </div>
               </div>

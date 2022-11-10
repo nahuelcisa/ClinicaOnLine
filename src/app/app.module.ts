@@ -33,7 +33,7 @@ import { EspecialidadPipe } from './pipes/especialidad.pipe';
 import { PacientePipe } from './pipes/paciente.pipe';
 import { PacientesComponent } from './components/pacientes/pacientes.component';
 import { FiltroSupremoPipe } from './pipes/filtro-supremo.pipe';
-
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -72,7 +72,8 @@ import { FiltroSupremoPipe } from './pipes/filtro-supremo.pipe';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgbModule,
-    MatSliderModule
+    MatSliderModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

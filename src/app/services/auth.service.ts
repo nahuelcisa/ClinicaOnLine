@@ -6,7 +6,36 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  user: any = ''/* {
+  user: any = 
+  /* {
+    apellido
+: 
+"admin",
+clave
+: 
+"123456789",
+dni
+: 
+23599591,
+edad
+: 
+32,
+foto
+: 
+"https://firebasestorage.googleapis.com/v0/b/clinicaonline-1e39f.appspot.com/o/3140366.png?alt=media&token=d3eab96e-779f-4265-a8a2-0fbed1d7647c",
+id
+: 
+"BOGHIPl64dzPkrA6Ia3o",
+mail
+: 
+"jeyesis426@adroh.com",
+nombre
+: 
+"admin",
+perfil
+: 
+"administrador"
+  } */{
     apellido
 : 
 "oggioni",
@@ -37,7 +66,7 @@ obraSocial
 perfil
 : 
 "paciente"
-  } */
+  }
   /* { apellido
   : 
   "Valentino",
