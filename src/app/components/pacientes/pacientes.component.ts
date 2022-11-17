@@ -39,13 +39,14 @@ export class PacientesComponent implements OnInit {
         return this.turnos.indexOf(element) === index;
       });
     });
+
   }
 
   verHistoriaClinica(usuario : any, modal : any){
     this.usuarioSeleccionado = usuario;
     this.historiaClinica = [];
     this.listaTurnos.forEach((element: any) => {
-      if(element.paciente.dni == this.usuarioSeleccionado.dni){
+      if(element.paciente.dni == this.usuarioSeleccionado.dni && element.historia != ''){
         this.historiaClinica.push(element.historia);
       }
     });

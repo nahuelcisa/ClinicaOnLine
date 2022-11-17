@@ -8,8 +8,8 @@ import {getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
   providedIn: 'root'
 })
 export class AuthService {
-  user: any = 
-  {
+  user: any = '';
+  /* {
     apellido
 : 
 "admin",
@@ -37,7 +37,7 @@ nombre
 perfil
 : 
 "administrador"
-  };/* {
+  }; *//* {
     apellido
 : 
 "oggioni",
@@ -101,7 +101,7 @@ perfil
   "Valentin",
   perfil
   : 
-  "profesional"} */
+  "profesional"}; */
   /*  = {
     apellido
 : 

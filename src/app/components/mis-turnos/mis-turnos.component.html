@@ -84,13 +84,13 @@
                     <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != '' && turno.diagnostico != ''"
                     (click)="btnVerDiagnostico(turno,contentDiagnostico)">Ver Diagnostico</button> 
 
-                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.historia == '' && this.as.user.perfil == 'profesional'"
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.historia == '' && this.as.user.perfil == 'profesional' && this.as.user.perfil == 'profesional' && turno.estado == 'finalizado'"
                     (click)="btnVerHistoriaClinica(turno,contentHistoria)">Subir Historia Clinica</button> 
 
-                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.calificacion == '' && turno.estado == 'finalizado'"
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.calificacion == '' && turno.estado == 'finalizado' && this.as.user.perfil == 'paciente'"
                     (click)="btnCalificarAtencion(turno,contentAtencion)">Calificar Atencion</button> 
 
-                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != '' && turno.estado == 'finalizado' && turno.encuesta == ''"
+                    <button type="button" class="btn btn-outline-success btn-lg" *ngIf="turno.comentario != '' && turno.estado == 'finalizado' && turno.encuesta == '' && this.as.user.perfil == 'paciente'"
                     (click)="btnCompletarEncuesta(turno,contentEncuesta)">Completar encuesta</button> 
                 </td>
               </tr>

@@ -1,6 +1,7 @@
 <app-nav></app-nav>
 
 <section class="pb_section pb_section_v1" data-section="about" id="section-about">
+    <button class="btn btn-success" (click)="downloadPDF()">Descargar PDF Graficos</button>
     <div class="container">
       <div class="row justify-content-center mt-5">    
             <div class="rounded p-1 text-center fs-5" style="color: white; background-color: rgb(53, 51, 51);">
@@ -21,6 +22,86 @@
                       <td>{{item.hora}}</td>
                     </tr>
                   </table>
+            </div>
+            <div id="paginaGraficos">
+                
+                <div class="chart-container" align="center" style="width: 400xp !important; height: 400px !important; margin-top: 30px">
+                    <div class="row">
+                        <h2>Cantidad de turnos por especialidad</h2>
+                    </div>
+                    <div class="row justify-content-center" style="width: 400xp !important; height: 400px !important;" align="center">
+                        <canvas  id="MyChart" style="background-color: white;width: 400xp !important; height: 400px !important;">{{ chartPie }}</canvas>
+                    </div>
+                </div>
+    
+                <div class="chart-container" align="center" style="width: 400xp !important; height: 400px !important; margin-top: 100px">
+                    <div class="row">
+                        <h2>Cantidad de turnos por dia</h2>
+                    </div>
+                    <div class="row justify-content-center" style="width: 400xp !important; height: 400px !important;" align="center">
+                        <canvas  id="MyChartDias" style="background-color: white;width: 400xp !important; height: 400px !important;">{{ chartBarDia }}</canvas>
+                    </div>
+                </div>
+    
+                <div class="chart-container" align="center" style="width: 400xp !important; height: 400px !important; margin-top: 100px">
+                    <div class="row">
+                        <h2>Cantidad de turnos pendientes por especialista</h2>
+                    </div>
+                    <div class="row" style="background-color: rgba(255, 255, 255, 0.801); width: fit-content; margin-bottom: 30px;">
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Elija horario</mat-label>
+                                <mat-select [(value)]="horaDesde">
+                                  <mat-option *ngFor="let horas of horasLunVie" [value]="horas">{{horas}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label >Elija horario</mat-label>
+                                <mat-select [(value)]="horaHasta" >
+                                  <mat-option *ngFor="let horas of horasLunVie | horarios : horaDesde " [value]="horas">{{horas}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-success" (click)="generarArrayPend()">Generar grafico</button>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" style="width: 400xp !important; height: 400px !important;" align="center">
+                        <canvas  id="MyChartEspDiaPend" style="background-color: white;width: 400xp !important; height: 400px !important;">{{ chartBarDia }}</canvas>
+                    </div>
+                </div>
+    
+                <div class="chart-container" align="center" style="width: 400xp !important; height: 400px !important; margin-top: 200px">
+                    <div class="row">
+                        <h2>Cantidad de turnos finalizados por especialista</h2>
+                    </div>
+                    <div class="row" style="background-color: rgba(255, 255, 255, 0.801); width: fit-content; margin-bottom: 30px;">
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Elija horario</mat-label>
+                                <mat-select [(value)]="horaDesde">
+                                  <mat-option *ngFor="let horas of horasLunVie" [value]="horas">{{horas}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label >Elija horario</mat-label>
+                                <mat-select [(value)]="horaHasta">
+                                  <mat-option *ngFor="let horas of horasLunVie | horarios : horaDesde " [value]="horas">{{horas}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-success" (click)="generarArrayFin()">Generar grafico</button>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" style="width: 400xp !important; height: 400px !important;" align="center">
+                        <canvas  id="MyChartEspDiaFinal" style="background-color: white;width: 400xp !important; height: 400px !important;">{{ chartBarDia }}</canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>  

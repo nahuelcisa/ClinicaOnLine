@@ -27,6 +27,14 @@
                   </table>
             </div>
         </div>
+
+        <!-- <div class="fabButtons row" style="margin-top: 150px;" >
+          <div *ngFor="let item of this.usuarios">
+              <button mat-fab color="warn" aria-label="Example icon button with a home icon">
+                  <img src="{{item.foto}}" alt="" style="border-radius: 100%; overflow: auto; height: 40px; width: 40px;">
+              </button>
+          </div>
+        </div> -->
     </div>  
   </section>
 
@@ -37,23 +45,23 @@
     </div>
     <div class="modal-body" *ngFor="let item of this.historiaClinica">
         <div class="mb-3">
-          <label for="dateOfBirth">Altura: {{item.altura}}</label>
+          <label for="dateOfBirth">Altura: {{item?.altura}}</label>
         </div>
         <div class="mb-3">
-          <label for="dateOfBirth">peso: {{item.peso}}</label>
+          <label for="dateOfBirth">peso: {{item?.peso}}</label>
         </div>
         <div class="mb-3">
-          <label for="dateOfBirth">Temperatura: {{item.temperatura}}</label>
+          <label for="dateOfBirth">Temperatura: {{item?.temperatura}}</label>
         </div>
         <div class="mb-3">
-          <label for="dateOfBirth">Presion: {{item.presion}}</label>
+          <label for="dateOfBirth">Presion: {{item?.presion}}</label>
         </div>
 
-        <div class="mb-3" *ngIf="item.dinamico1[0] != ''">
-          <label for="dateOfBirth">{{item.dinamico1[0]}}: {{item.dinamico1[1]}}</label>
+        <div class="mb-3" *ngIf="item?.dinamico1[0] != ''">
+          <label for="dateOfBirth">{{item?.dinamico1[0]}}: {{item?.dinamico1[1]}}</label>
         </div>
-        <div class="mb-3" *ngIf="item.dinamico2[0] != ''">
-          <label for="dateOfBirth">{{item.dinamico2[0]}}: {{item.dinamico2[1]}}</label>
+        <div class="mb-3" *ngIf="item?.dinamico2[0] != ''">
+          <label for="dateOfBirth">{{item?.dinamico2[0]}}: {{item?.dinamico2[1]}}</label>
         </div>
         <div class="mb-3" *ngIf="item.dinamico3[0] != ''">
           <label for="dateOfBirth">{{item.dinamico3[0]}}: {{item.dinamico3[1]}}</label>

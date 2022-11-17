@@ -36,6 +36,7 @@ import { FiltroSupremoPipe } from './pipes/filtro-supremo.pipe';
 import {MatSelectModule} from '@angular/material/select';
 import { HorariosPipe } from './pipes/horarios.pipe';
 import { GraficosComponent } from './components/graficos/graficos.component';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { GraficosComponent } from './components/graficos/graficos.component';
     ToastrModule.forRoot(),
     NgbModule,
     MatSliderModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
