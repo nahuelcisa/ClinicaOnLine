@@ -1,0 +1,29 @@
+<app-nav></app-nav>
+
+<section class="pb_section pb_section_v1" data-section="about" id="section-about">
+    <div class="container">
+      <div class="row justify-content-center mt-5">    
+            <div class="rounded p-1 text-center fs-5" style="color: white; background-color: rgb(53, 51, 51);">
+                <h2>Logs de usuarios</h2>
+                <table style="width:100%">
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Correo</th>
+                      <th>Fecha</th>
+                      <th>Hora</th>
+                    </tr>
+                    <tr *ngFor="let item of this.log">
+                      <td>{{item.usuario.nombre}}</td>
+                      <td>{{item.usuario.apellido}}</td>
+                      <td>{{item.usuario.mail}}</td>
+                      <td>{{item.dia}}</td>
+                      <td>{{item.hora}}</td>
+                    </tr>
+                  </table>
+            </div>
+        </div>
+    </div>  
+</section>
+
+

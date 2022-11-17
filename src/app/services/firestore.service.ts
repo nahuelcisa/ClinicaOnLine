@@ -16,6 +16,7 @@ export class FirestoreService {
   pacientesCollectionReference : any;
   adminCollectionReference : any;
   turnoCollectionReference : any;
+  logCollectionReference : any;
 
   constructor(public Firestore: Firestore, public as : AuthService) {
     this.storage = getStorage();
@@ -24,6 +25,7 @@ export class FirestoreService {
     this.usuariosCollectionReference = collection(this.Firestore, 'usuarios');
     this.adminCollectionReference = collection(this.Firestore, 'administradores');
     this.turnoCollectionReference = collection(this.Firestore, 'turnos');
+    this.logCollectionReference = collection(this.Firestore, 'logs');
     
   }
 
@@ -76,8 +78,14 @@ export class FirestoreService {
     return addDoc(this.turnoCollectionReference,turno);
   }
 
+ 
+
   ListaUsuarios():Observable<any[]>{
     return collectionData(this.usuariosCollectionReference,{idField: 'id'}) as Observable<any[]>;
+  }
+
+  ListaLogs():Observable<any[]>{
+    return collectionData(this.logCollectionReference,{idField: 'id'}) as Observable<any[]>;
   }
 
   ListaTurnos():Observable<any[]>{

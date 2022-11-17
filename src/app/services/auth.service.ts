@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { Firestore, collection, addDoc,collectionData} from '@angular/fire/firestore';
+import {getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user: any = '';
-  /* {
+  user: any = 
+  {
     apellido
 : 
 "admin",
@@ -35,7 +37,7 @@ nombre
 perfil
 : 
 "administrador"
-  } *//* {
+  };/* {
     apellido
 : 
 "oggioni",
@@ -133,11 +135,20 @@ perfil
 "paciente"
   };  */
   userDateFirebase: any;
+  storage : any;
+  logCollectionReference : any;
 
-  constructor(public afAuth: AngularFireAuth, private router : Router) { }
+  constructor(public afAuth: AngularFireAuth, private router : Router, public Firestore: Firestore) {
+    this.storage = getStorage();
+    this.logCollectionReference = collection(this.Firestore, 'logs');
+   }
 
   async sendVerificationEmail():Promise<void>{
     return (await this.afAuth.currentUser)?.sendEmailVerification();
+  }
+
+  agregarLog(log : any){
+    return addDoc(this.logCollectionReference,log);
   }
 
   async login(email: string, password:string){
@@ -148,6 +159,17 @@ perfil
       );      
       this.userDateFirebase = result;
       console.log(this.user);
+
+      let dia : any = new Date();
+
+
+      let log = {
+        usuario : this.user,
+        dia: dia.toLocaleDateString(),
+        hora:  `${dia.getHours()}:${dia.getMinutes()}:${dia.getSeconds()}`
+      }
+
+      this.agregarLog(log);
       return result;
 
     } catch (error) {      

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GraficosComponent } from './components/graficos/graficos.component';
 import { LoginComponent } from './components/login/login.component';
 import { MisTurnosComponent } from './components/mis-turnos/mis-turnos.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'turno', component: SolicitarTurnoComponent},
   {path: 'misturnos', component: MisTurnosComponent},
   {path: 'pacientes', component: PacientesComponent},
+  {path: 'graficos', component: GraficosComponent},
   {path:'*', component:LoginComponent},
 ];
 
