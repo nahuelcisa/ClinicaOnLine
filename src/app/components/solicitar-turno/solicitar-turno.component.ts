@@ -122,7 +122,7 @@ export class SolicitarTurnoComponent implements OnInit {
       });
   }
 
-  cargarHoras(){
+  cargarArrarHoras(){
     this.horasLunVie = [
       '8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00',
       '17:30','18:00','18:30','19:00'
@@ -130,6 +130,14 @@ export class SolicitarTurnoComponent implements OnInit {
     this.horasSab  = [
       '8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00'
     ];
+  }
+
+  cargarHoras(){
+    this.cargarArrarHoras();
+    console.log(this.especialistaElegido);
+    this.horasLunVie = this.horasLunVie.slice(this.horasLunVie.indexOf(this.especialistaElegido.horaDesdeLun), this.horasLunVie.indexOf(this.especialistaElegido.horaHastaLun +1));
+    this.horasSab  = this.horasSab.slice(this.horasSab.indexOf(this.especialistaElegido.horaDesdeSab), this.horasSab.indexOf(this.especialistaElegido.horaHastaSab) + 1);
+
   }
 
   seleccionarTurno(hora : any){
@@ -143,7 +151,8 @@ export class SolicitarTurnoComponent implements OnInit {
       comentario : '',
       encuesta: '',
       calificacion: '',
-      diagnostico : ''
+      diagnostico : '',
+      historia: ''
     }
 
     if(this.admin){

@@ -97,6 +97,11 @@ export class FirestoreService {
     return updateDoc(UsuarioDocRef,usuario);
   }
 
+  ModificarProfesional(profesional:any,id:any){
+    const profesionalDocRef = doc(this.Firestore, `profesionales/${id}`);
+    return updateDoc(profesionalDocRef,profesional);
+  }
+
   ModificarTurno(turno:any,id:any){
     const turnoDocRef = doc(this.Firestore, `turnos/${id}`);
     return updateDoc(turnoDocRef,turno);

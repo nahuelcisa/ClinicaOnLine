@@ -34,6 +34,7 @@ import { PacientePipe } from './pipes/paciente.pipe';
 import { PacientesComponent } from './components/pacientes/pacientes.component';
 import { FiltroSupremoPipe } from './pipes/filtro-supremo.pipe';
 import {MatSelectModule} from '@angular/material/select';
+import { HorariosPipe } from './pipes/horarios.pipe';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import {MatSelectModule} from '@angular/material/select';
     EspecialidadPipe,
     PacientePipe,
     PacientesComponent,
-    FiltroSupremoPipe
+    FiltroSupremoPipe,
+    HorariosPipe
   ],
   imports: [
     BrowserModule,

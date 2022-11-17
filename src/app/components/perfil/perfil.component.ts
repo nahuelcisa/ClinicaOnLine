@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
@@ -26,8 +27,11 @@ export class PerfilComponent implements OnInit {
     '17:30','18:00','18:30','19:00'
   ];
 
-  public horaDesdeLun : any;
-  public horaHastaLun : any;
+  public horaDesdeLun : any = '';
+  public horaHastaLun : any = '';
+
+  public horaDesdeSab : any = '';
+  public horaHastaSab : any = '';
 
   horasSab : any = [
     '8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00'
@@ -35,7 +39,7 @@ export class PerfilComponent implements OnInit {
 
 
 
-  constructor(private fs : FirestoreService, public as: AuthService, private modalService: NgbModal) { 
+  constructor(private fs : FirestoreService, public as: AuthService, private modalService: NgbModal, private toastr: ToastrService) { 
     this.fs.ListaTurnos().subscribe((data)=>{
 
       this.turnos = data;
@@ -76,9 +80,40 @@ export class PerfilComponent implements OnInit {
     );
   }
 
-  mostrar(){
-    console.log(this.horaDesdeLun);
-    console.log(this.horaHastaLun);
+  guardar(){
+/*     console.log(this.horaDesdeLun);
+    console.log(this.horaHastaLun); */
+   // console.log(this.horasLunVie.indexOf(this.horaDesdeLun));
+    //console.log(this.horasLunVie.slice(this.horasLunVie.indexOf(this.horaDesdeLun), this.horasLunVie.indexOf(this.horaHastaLun) + 1)) ;
+    console.log(this.horasLunVie.slice(this.horasLunVie.indexOf(this.horaDesdeLun), this.horasLunVie.length) );
+
+    this.as.user.horaDesdeLun = this.horaDesdeLun;
+    this.as.user.horaHastaLun = this.horaHastaLun;
+    this.as.user.horaDesdeSab = this.horaDesdeSab;
+    this.as.user.horaHastaSab = this.horaHastaSab;
+
+    this.fs.ListaEspecialistas().subscribe((data)=>{
+      let profesionales = data;
+
+      let profesional : any;
+
+      profesionales.forEach(element => {
+        if(this.as.user.dni == element.dni){
+          profesional = element;
+          profesional.horasDesdeLun = this.horaDesdeLun;
+          profesional.horaHastaLun = this.horaHastaLun;
+          profesional.horaDesdeSab = this.horaDesdeSab;
+          profesional.horaHastaSab = this.horaHastaSab;
+        }
+      });
+
+      this.fs.ModificarUsuario(this.as.user,this.as.user.id).then(()=>{
+        this.fs.ModificarProfesional(profesional,profesional.id).then(()=>{   
+        });
+      });
+    });
+
+
   }
 
   cargarHoras(){

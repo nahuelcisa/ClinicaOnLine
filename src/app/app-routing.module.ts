@@ -12,7 +12,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'', component:LoginComponent},
-  { path: 'registro', loadChildren: () => import('./registro/registro.module').then(m => m.RegistroModule) },
+  {path: 'registro', loadChildren: () => import('./registro/registro.module').then(m => m.RegistroModule) },
   {path: 'principal', component: PrincipalComponent},
   {path: 'usuarios', component: UsuariosComponent},
   {path: 'perfil', component: PerfilComponent},

@@ -1,5 +1,5 @@
 <app-nav></app-nav>
-<section class="vh-95" style="margin-top: 150px;">
+<section class="vh-95" style="margin-top: 50px;">
     <div class="container py-5 h-95">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-6 mb-4 mb-lg-0">
@@ -71,13 +71,36 @@
                         <mat-form-field appearance="fill">
                           <mat-label >Elija horario</mat-label>
                           <mat-select [(value)]="horaHastaLun">
-                            <mat-option *ngFor="let horas of horasLunVie" [value]="horas">{{horas}}</mat-option>
+                            <mat-option *ngFor="let horas of horasLunVie | horarios : horaDesdeLun " [value]="horas">{{horas}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="row pt-1">
+                    <h4>Sabados</h4>
+                      <div class="col-6 mb-3">
+                        <mat-form-field appearance="fill">
+                          <mat-label>Elija horario</mat-label>
+                          <mat-select [(value)]="horaDesdeSab">
+                            <mat-option *ngFor="let horas of horasSab" [value]="horas">{{horas}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-6 mb-3">
+                        <mat-form-field appearance="fill">
+                          <mat-label >Elija horario</mat-label>
+                          <mat-select [(value)]="horaHastaSab">
+                            <mat-option *ngFor="let horas of horasSab | horarios : horaDesdeSab " [value]="horas">{{horas}}</mat-option>
                           </mat-select>
                         </mat-form-field>
                       </div>
                     </div>
                     <div class="row pt-1">
-                      <button (click)="mostrar()"> test </button>
+                      <button type="button" class="btn btn-info" (click)="guardar()" 
+                      [disabled]="this.horaDesdeLun == '' || this.horaHastaLun == '' ||
+                                  this.horaDesdeSab == '' || this.horaHastaSab == '' "
+                      > Guardar </button>
                     </div>
                   </div>
                 </div>
@@ -95,29 +118,29 @@
         <h4 class="modal-title" id="modal-basic-title">Historia clinica</h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
-    <div *ngIf="this.historiaClinica.length === 0">
+    <div *ngIf="this.historiaClinica.length != 0">
       <div class="modal-body" *ngFor="let item of this.historiaClinica">
           <div class="mb-3">
-            <label for="dateOfBirth">Altura: {{item.altura}}</label>
+            <label for="dateOfBirth">Altura: {{item?.altura}}</label>
           </div>
           <div class="mb-3">
-            <label for="dateOfBirth">peso: {{item.peso}}</label>
+            <label for="dateOfBirth">peso: {{item?.peso}}</label>
           </div>
           <div class="mb-3">
-            <label for="dateOfBirth">Temperatura: {{item.temperatura}}</label>
+            <label for="dateOfBirth">Temperatura: {{item?.temperatura}}</label>
           </div>
           <div class="mb-3">
-            <label for="dateOfBirth">Presion: {{item.presion}}</label>
+            <label for="dateOfBirth">Presion: {{item?.presion}}</label>
           </div>
   
-          <div class="mb-3" *ngIf="item.dinamico1[0] != ''">
-            <label for="dateOfBirth">{{item.dinamico1[0]}} : {{item.dinamico1[1]}}</label>
+          <div class="mb-3" *ngIf="item?.dinamico1[0] != ''">
+            <label for="dateOfBirth">{{item?.dinamico1[0]}} : {{item?.dinamico1[1]}}</label>
           </div>
-          <div class="mb-3" *ngIf="item.dinamico2[0] != ''">
-            <label for="dateOfBirth">{{item.dinamico2[0]}} : {{item.dinamico2[1]}}</label>
+          <div class="mb-3" *ngIf="item?.dinamico2[0] != ''">
+            <label for="dateOfBirth">{{item?.dinamico2[0]}} : {{item?.dinamico2[1]}}</label>
           </div>
-          <div class="mb-3" *ngIf="item.dinamico3[0] != ''">
-            <label for="dateOfBirth">{{item.dinamico3[0]}} : {{item.dinamico3[1]}}</label>
+          <div class="mb-3" *ngIf="item?.dinamico3[0] != ''">
+            <label for="dateOfBirth">{{item?.dinamico3[0]}} : {{item?.dinamico3[1]}}</label>
           </div>
       </div>
     </div>

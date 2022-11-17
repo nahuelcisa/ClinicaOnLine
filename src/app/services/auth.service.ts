@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  user: any = 
+  user: any = '';
   /* {
     apellido
 : 
@@ -35,7 +35,7 @@ nombre
 perfil
 : 
 "administrador"
-  } */{
+  } *//* {
     apellido
 : 
 "oggioni",
@@ -66,7 +66,7 @@ obraSocial
 perfil
 : 
 "paciente"
-  }
+  } */
   /* { apellido
   : 
   "Valentino",

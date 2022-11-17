@@ -41,6 +41,10 @@ export class AltaProfesionalComponent implements OnInit {
       clave : this.grupoControles.get('clave')?.value,
       foto : this.foto,
       perfil : 'profesional',
+      horaDesdeLun : '8:00',
+      horaHastaLun : '19:00',
+      horaDesdeSab : '8:00',
+      horaHastaSab : '14:00',
       habilitado : false
     }
     if(this.captcha == this.cs.palabra){
